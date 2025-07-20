@@ -4,4 +4,39 @@ GET {{baseUrl}}/health
 
 ###
 
+# @name getRooms
 GET {{baseUrl}}/rooms
+
+###
+
+# @name createRoom
+POST {{baseUrl}}/rooms
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "create room now",
+    "description": "New description create room now"
+}
+
+###
+
+@roomId = {{createRoom.response.body.$.roomId}}
+
+###
+
+# @name createQuestion
+POST {{baseUrl}}/rooms/{{roomId}}/questions
+Accept: application/json
+Content-Type: application/json
+
+{
+ "question": "How you dooing this?"
+}
+
+###
+
+
+###
+# @name getRoomQuestions
+GET {{baseUrl}}/rooms/{{roomId}}/questions
